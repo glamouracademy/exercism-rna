@@ -25,10 +25,12 @@ class Complement
 		end
 	end		
 
-	def self.nucleotide_constructor(dna_strand)
+	def self.nucleotide_constructor(dna_strand, method)
 		dna_nucleotide_array = dna_strand.split("")
 		dna_nucleotide_array.map do |nucleotide| 
-			convert_dna(nucleotide)
+			send(method, nucleotide)
+			# convert_dna(nucleotide)
+
 			# method_name = :convert_dna
 			# send(method_name, dna)
 		end	
@@ -37,8 +39,8 @@ class Complement
 	end
 
 	def self.of_dna(dna_strand)			
-		
-		self.nucleotide_constructor(dna_strand)
+		method = :convert_dna
+		self.nucleotide_constructor(dna_strand, method)
 		
 		# dna_nucleotide_array = dna_strand.split("")
 		# dna_nucleotide_array.map do |nucleotide| 
