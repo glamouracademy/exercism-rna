@@ -1,5 +1,10 @@
 class Complement
-
+	# DNA_TO_RNA_MATCHES = {
+	# 	'G' => 'C',
+	# 	'C' => 'G',
+	# 	'T' => 'A',
+	# 	'A' => 'U'
+	# }
 
 	def self.convert_dna(dna)
 		if dna == 'C'
@@ -26,12 +31,8 @@ class Complement
 	end		
 
 	def self.nucleotide_constructor(strand, method)
-		nucleotide_array = strand.split("")
-		nucleotide_array.map do |nucleotide| 
-			send(method, nucleotide)
-		end	
-		
-		new_strand = nucleotide_array.join
+		strand.chars.map { |nucleotide| 
+			send(method, nucleotide) }.join
 	end
 
 	def self.of_dna(strand)			
