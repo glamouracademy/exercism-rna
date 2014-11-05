@@ -14,12 +14,10 @@ class Complement
 	end
 
 	def self.of_dna(strand)			
-		method = :convert_dna
-		self.nucleotide_constructor(strand, method)
+		self.nucleotide_constructor(strand, :convert_dna)
 	end
 
 	def self.of_rna(strand)
-		method = :convert_rna
-		self.nucleotide_constructor(strand, method)
+		self.nucleotide_constructor(strand, :convert_rna)
 	end
 end
