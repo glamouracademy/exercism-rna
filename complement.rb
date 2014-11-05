@@ -1,33 +1,11 @@
 class Complement
-	# DNA_TO_RNA_MATCHES = {
-	# 	'G' => 'C',
-	# 	'C' => 'G',
-	# 	'T' => 'A',
-	# 	'A' => 'U'
-	# }
 
 	def self.convert_dna(dna)
-		if dna == 'C'
-			dna.replace 'G'
-		elsif dna == 'G'
-			dna.replace 'C'
-		elsif dna == 'T'
-			dna.replace 'A'
-		else dna == 'A'
-			dna.replace 'U'
-		end
+		dna.tr('CGTA', 'GCAU')
 	end
 
 	def self.convert_rna(rna)
-		if rna == 'G'
-			rna.replace 'C'
-		elsif rna == 'C'
-			rna.replace 'G'
-		elsif rna == 'A'
-			rna.replace 'T'
-		else rna == 'U'
-			rna.replace 'A'
-		end
+		rna.tr('GCAU', 'CGTA')
 	end		
 
 	def self.nucleotide_constructor(strand, method)
