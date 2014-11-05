@@ -25,39 +25,22 @@ class Complement
 		end
 	end		
 
-	def self.nucleotide_constructor(dna_strand, method)
-		dna_nucleotide_array = dna_strand.split("")
-		dna_nucleotide_array.map do |nucleotide| 
+	def self.nucleotide_constructor(strand, method)
+		nucleotide_array = strand.split("")
+		nucleotide_array.map do |nucleotide| 
 			send(method, nucleotide)
-			# convert_dna(nucleotide)
-
-			# method_name = :convert_dna
-			# send(method_name, dna)
 		end	
 		
-		rna = dna_nucleotide_array.join
+		new_strand = nucleotide_array.join
 	end
 
-	def self.of_dna(dna_strand)			
+	def self.of_dna(strand)			
 		method = :convert_dna
-		self.nucleotide_constructor(dna_strand, method)
-		
-		# dna_nucleotide_array = dna_strand.split("")
-		# dna_nucleotide_array.map do |nucleotide| 
-		# 	convert_dna(dna)
-		# 	# method_name = :convert_dna
-		# 	# send(method_name, dna)
-		# end
-		
+		self.nucleotide_constructor(strand, method)
 	end
 
-	def self.of_rna(rna_strand)
-		rna_nucleotide_array = rna_strand.split("")
-
-		rna_nucleotide_array.map do |nucleotide| 
-			convert_rna(nucleotide)
-		end
-
-		dna = rna_nucleotide_array.join
+	def self.of_rna(strand)
+		method = :convert_rna
+		self.nucleotide_constructor(strand, method)
 	end
 end
