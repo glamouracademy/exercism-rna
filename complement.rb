@@ -8,8 +8,13 @@ class Complement
 		rna.tr('GCAU', 'CGTA')
 	end		
 
+	def self.nucleotide_conversion(strand)
+		strand.chars
+	end
+
 	def self.of_dna(strand)	
-		self.convert_dna(strand)
+		self.nucleotide_conversion(strand).map { |nucleotide|
+			self.convert_dna(nucleotide) }.join
 	end
 
 	def self.of_rna(strand)
