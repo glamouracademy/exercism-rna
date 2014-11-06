@@ -18,6 +18,7 @@ class Complement
 	end
 
 	def self.of_rna(strand)
-		self.convert_rna(strand)
+		self.nucleotide_conversion(strand).map { |nucleotide|
+			self.convert_rna(nucleotide) }.join
 	end
 end
