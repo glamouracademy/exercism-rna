@@ -1,27 +1,40 @@
-class Complement
+module Conversion 
 
-	def self.convert_dna(dna)
-		dna.tr('CGTA', 'GCAU')
+	def self.included(base)
+		base.extend ClassMethods
 	end
 
-	def self.convert_rna(rna)
-		rna.tr('GCAU', 'CGTA')
-	end		
+	module ClassMethods
+		def of_dna(strand)
+			nucleotide_conversion(strand).map { |nucleotide|
+				convert(nucleotide) }.join
+		end
 
-	def self.of_dna(strand)	
-		nucleotide_conversion(strand).map { |nucleotide|
-			self.convert_dna(nucleotide) }.join
+		def nucleotide_conversion(strand)
+			strand.chars
+		end
 	end
 
 	def self.of_rna(strand)
 		nucleotide_conversion(strand).map { |nucleotide|
-			self.convert_rna(nucleotide) }.join
-	end
-
-	private
-
-	def self.nucleotide_conversion(strand)
-		strand.chars
+			convert(nucleotide) }.join
 	end
 
 end
+
+class DNAComplement
+include Conversion
+	def self.convert(dna)
+		dna.tr('CGTA', 'GCAU')
+	end
+end
+
+class RNAComplement
+include Conversion
+	def self.convert(rna)
+		rna.tr('GCAU', 'CGTA')
+	end
+end
+
+
+
